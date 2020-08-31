@@ -1,0 +1,22 @@
+{
+  "name": "ecobank-qr-print-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Itexsystems/ecobank-qr-print-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Itexsystems/ecobank-qr-print-api/issues"
+  },
+  "homepage": "https://gitlab.com/Itexsystems/ecobank-qr-print-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
