@@ -549,15 +549,26 @@ router.post('/process',async (req,res)=>{
 		};
 
 		let theRequest = req.body;
+		console.log("Payload", theRequest);
+
+		if (!theRequest.posTerminalId){
+			let error = {
+				error: true,
+				message: "Please provide parameter(s)"
+			};
+
+			return res.status(400).json(error);
+		}
 
 		if (theRequest !== null){
 			let posTerminalID = theRequest.posTerminalId;
-			console.log("Received QR POS Terminal ID: \n${posTerminalID} \n${theRequest} ");
+			console.log(posTerminalID, "Received QR POS Terminal ID: \n" + posTerminalID + "\n" + theRequest);
 
 			let requestData = {};
 			let getMerchantId = Util.findMerchant(posTerminalID);
 
-			if (Util.isset(posTerminalID) && Util.isset(getMerchantId) && getMerchantId.isEmpty()){
+			if (Util.isset(posTerminalID) && Util.isset(getMerchantId) && (getMerchantId==null)){
+				//getMerchantId.isEmpty()
 				
 				requestData.merchantID = getMerchantId;
 				requestData.terminalID = Util.findTerminal(posTerminalID);
@@ -569,29 +580,33 @@ router.post('/process',async (req,res)=>{
 				requestData.posTerminalID = "0000";
 			}
 			
-			requestData.sessionID = Util.getData.sessionID;
+			requestData.sessionID = process.env.LIVE_SESSION_ID;//Util.getData.sessionID
 			requestData.transactionFilter = 20;
 
 			let requestPostField = requestData;
 			let requestUrl = Util.getData.requestUrl;
 
-			console.log("QR Request Post Field: " . JSON.stringify(requestPostField));
+			// console.log("QR Request Post Field: " . JSON.stringify(requestPostField));
+			console.log("requestPayload", requestPostField);
 
 			fetch(requestUrl, {
 				method: 'post',
 				body:    JSON.stringify(requestPostField),
 				headers: { 'Content-Type': 'application/json' },
 			})
-			.then(res => res.json())
-			.then(json => {
+			.then((json) => {
 				console.log("Ecobank QR Response: ", json);
 				return res.json(json);
+			})
+			.catch((err) =>{
+				console.log(err);
+				return err;
 			});
 
 			//await the connection to the endpoint
 		}
 
-		return res.json({status: true, message: 'Ecobank QR Processing'});
+		return res.json({status: true, message: 'Ecobank QR Processing...'});
 
     }catch (error) {
         console.log(error);
