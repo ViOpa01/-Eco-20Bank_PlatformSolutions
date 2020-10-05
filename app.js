@@ -25,4 +25,7 @@ app.get('/', (req, res) => {
 });
 
 //start listening
-app.listen(3000);
+let apiport = process.env.API_PORT || 6000;
+app.listen(6000, ()=>{
+   console.log(`Ecobank API Server started and listening at ${apiport}`)
+});
