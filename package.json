@@ -1,0 +1,27 @@
+{
+  "name": "ecobank-qr-print-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Itexsystems/ecobank-qr-print-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Itexsystems/ecobank-qr-print-api/issues"
+  },
+  "homepage": "https://gitlab.com/Itexsystems/ecobank-qr-print-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0",
+    "node-fetch": "^2.6.0"
+  }
+}
