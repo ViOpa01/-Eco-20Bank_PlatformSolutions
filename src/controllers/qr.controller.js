@@ -606,7 +606,7 @@ router.post('/process',async (req,res)=>{
 			//await the connection to the endpoint
 		}
 
-		return res.json({status: true, message: 'Ecobank QR Processing...'});
+		// return res.json({status: true, message: 'Ecobank QR Processing...'});
 
     }catch (error) {
         console.log(error);
